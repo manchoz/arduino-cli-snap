@@ -29,7 +29,7 @@ parts:
       - wget
     organize:
       arduino-cli: usr/bin/
-      LICENSE.txt: usr/share/arduino-cli
+      LICENSE.txt: usr/share/arduino-cli/
 
 apps:
   arduino-cli:
