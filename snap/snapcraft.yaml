@@ -1,24 +1,36 @@
-name: arduino-cli # you probably want to 'snapcraft register <name>'
-base: core18 # the base snap is the execution environment for this snap
-version: '0.19.0' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+name: arduino-cli
+base: core18
+version: '0.19.0'
+summary: Arduino command-line interface
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  Arduino CLI is an all-in-one solution that provides builder, boards/library manager,
+  uploader, discovery and many other tools needed to use any Arduino compatible
+  board and platforms.
 
-grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
+  > Note: this software is currently under active development: anything can change
+  at any time, API and UI must be considered unstable until we release version 1.0.0.
+
+grade: stable
+confinement: strict
 
 parts:
   arduino-cli:
-    plugin: go
-    go-importpath: github.com/arduino/arduino-cli
-    source: https://github.com/arduino/arduino-cli
-    source-tag: 0.19.0
-    source-type: git
+    plugin: dump
+    source:
+      - on amd64: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_64bit.tar.gz
+      - else:
+        - on i386: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_32bit.tar.gz
+      - else:
+        - on armhf: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARMv7.tar.gz
+      - else:
+        - on arm64: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARM64.tar.gz
+      - else fail
+    build-packages:
+      - wget
+    organize:
+      arduino-cli: usr/bin/
+      LICENSE.txt: usr/share/arduino-cli
 
 apps:
   arduino-cli:
-    command: bin/arduino-cli
+    command: usr/bin/arduino-cli
