@@ -1,6 +1,8 @@
 name: arduino-cli
 base: core18
 version: '0.19.0'
+architectures:
+  - build-on: [arm64, armhf, amd64, i386]
 summary: Arduino command-line interface
 description: |
   Arduino CLI is an all-in-one solution that provides builder, boards/library manager,
