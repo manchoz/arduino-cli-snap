@@ -20,6 +20,10 @@ description: |
   
   where `<plug>` can be in example `raw-usb`.
 
+  **Optional plugs**
+  - *raw-usb:* allows access to all connected USB devices via a raw interface.
+  - *serial-port*: enables access to a specific serial port. This interface is restricted because it provides privileged access to configure serial port hardware. Might require hot-plug support `snap set system experimental.hotplug=true` followed by `systemctl restart snapd`.  
+
 grade: stable
 confinement: strict
 
