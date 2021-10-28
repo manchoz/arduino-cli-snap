@@ -1,6 +1,6 @@
 name: arduino-cli
 base: core18
-version: '0.19.3~1'
+version: '0.19.3'
 architectures:
   - build-on: [arm64, armhf, amd64, i386]
 summary: Arduino command-line interface
@@ -15,17 +15,24 @@ description: |
 grade: stable
 confinement: strict
 
+apps:
+  arduino-cli:
+    command: usr/bin/arduino-cli
+
+plugs:
+  network:
+
 parts:
   arduino-cli:
     plugin: dump
     source:
-      - on amd64: https://github.com/arduino/arduino-cli/releases/download/0.19.3/arduino-cli_0.19.3_Linux_64bit.tar.gz
+      - on amd64: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_64bit.tar.gz
       - else:
-        - on i386: https://github.com/arduino/arduino-cli/releases/download/0.19.3/arduino-cli_0.19.3_Linux_32bit.tar.gz
+        - on i386: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_32bit.tar.gz
       - else:
-        - on armhf: https://github.com/arduino/arduino-cli/releases/download/0.19.3/arduino-cli_0.19.3_Linux_ARMv7.tar.gz
+        - on armhf: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARMv7.tar.gz
       - else:
-        - on arm64: https://github.com/arduino/arduino-cli/releases/download/0.19.3/arduino-cli_0.19.3_Linux_ARM64.tar.gz
+        - on arm64: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARM64.tar.gz
       - else fail
     build-packages:
       - wget
@@ -33,8 +40,3 @@ parts:
       arduino-cli: usr/bin/
       LICENSE.txt: usr/share/arduino-cli/
 
-apps:
-  arduino-cli:
-    command: usr/bin/arduino-cli
-    plugs:
-    - network
