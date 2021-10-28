@@ -9,8 +9,16 @@ description: |
   uploader, discovery and many other tools needed to use any Arduino compatible
   board and platforms.
 
-  > Note: this software is currently under active development: anything can change
+  **Note**: this software is currently under active development: anything can change
   at any time, API and UI must be considered unstable until we release version 1.0.0.
+
+  **Necessary plugs**
+  If you are not able to list and/or upload to your board, you may need plugs and connects.
+  See `snap connections arduino-cli` for necessary plugs (such as access to USB and serial ports) and connect them with 
+
+  `$ sudo snap connect arduino-cli:<plug>`
+  
+  where `<plug>` can be in example `raw-usb`.
 
 grade: stable
 confinement: strict
@@ -18,9 +26,11 @@ confinement: strict
 apps:
   arduino-cli:
     command: usr/bin/arduino-cli
-
-plugs:
-  network:
+    plugs:
+    - network
+    - serial-port
+    - raw-usb
+    - home
 
 parts:
   arduino-cli:
