@@ -36,3 +36,5 @@ parts:
 apps:
   arduino-cli:
     command: usr/bin/arduino-cli
+    plugs:
+    - network
