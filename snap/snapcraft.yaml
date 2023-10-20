@@ -40,13 +40,13 @@ parts:
   arduino-cli:
     plugin: dump
     source:
-      - on amd64: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_64bit.tar.gz
+      - on amd64: https://github.com/arduino/arduino-cli/releases/download/v$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_64bit.tar.gz
       - else:
-        - on i386: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_32bit.tar.gz
+        - on i386: https://github.com/arduino/arduino-cli/releases/download/v$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_32bit.tar.gz
       - else:
-        - on armhf: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARMv7.tar.gz
+        - on armhf: https://github.com/arduino/arduino-cli/releases/download/v$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARMv7.tar.gz
       - else:
-        - on arm64: https://github.com/arduino/arduino-cli/releases/download/$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARM64.tar.gz
+        - on arm64: https://github.com/arduino/arduino-cli/releases/download/v$SNAPCRAFT_PROJECT_VERSION/arduino-cli_$SNAPCRAFT_PROJECT_VERSION_Linux_ARM64.tar.gz
       - else fail
     build-packages:
       - wget
