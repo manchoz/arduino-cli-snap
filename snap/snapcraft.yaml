@@ -1,5 +1,5 @@
 name: arduino-cli
-base: core18
+base: core24
 version: '1.4.0'
 architectures:
   - build-on: [arm64, armhf, amd64, i386]
